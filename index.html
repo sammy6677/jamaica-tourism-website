@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Discover Jamaica – Beaches, Rivers, Food &amp; Culture</title>
+<meta name="description" content="An interactive, multilingual guide to Jamaica: beaches, rivers, markets and culture, in English and Korean.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;700&display=swap">
+<style>
+:root{--ink:#14201b;--muted:#4f5f58;--bg:#fbf8f1;--card:#fff;--line:#e7e0cf;--green:#0b6b3a;--gold:#f2b705;--sea:#0a6c8a;--f-d:"Fraunces",Georgia,serif;--f-b:"Inter","Noto Sans KR",system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root{--ink:#eef3ef;--muted:#a9b8b0;--bg:#0f1714;--card:#17221d;--line:#2a3a32;--green:#3fbf7a;--sea:#5cc1e0}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--f-b);color:var(--ink);background:var(--bg);line-height:1.6;font-size:17px}
+html[lang=ko] body{word-break:keep-all}
+img{display:block;max-width:100%}
+a{color:inherit}
+.wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+header{position:fixed;inset:0 0 auto;z-index:10;transition:background .2s}
+header.solid{background:rgba(10,20,16,.92);backdrop-filter:blur(6px)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:68px;color:#fff}
+.brand{font-family:var(--f-d);font-weight:800;font-size:1.5rem;text-decoration:none}
+.brand i{font-style:normal;color:var(--gold)}
+.links{display:flex;gap:22px;list-style:none;margin:0;padding:0;font-weight:600;font-size:.95rem}
+.links a{text-decoration:none;opacity:.9}.links a:hover{opacity:1}
+@media (max-width:820px){.links{display:none}}
+.lang{display:flex;background:rgba(255,255,255,.15);border-radius:999px;padding:3px}
+.lang button{font:inherit;font-weight:700;font-size:.85rem;color:#fff;background:transparent;border:0;border-radius:999px;padding:8px 14px;cursor:pointer;min-height:40px}
+.lang button[aria-pressed=true]{background:#fff;color:#14201b}
+.hero{position:relative;min-height:92vh;display:flex;align-items:flex-end;color:#fff;background:#0a1a14 url(images/beach.jpg) center/cover}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35) 0%,rgba(0,0,0,.05) 35%,rgba(0,0,0,.7) 100%)}
+.hero .wrap{position:relative;padding-bottom:72px}
+.eyebrow{font-size:.8rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.hero h1{font-family:var(--f-d);font-size:clamp(2.6rem,7vw,5rem);line-height:1.02;margin:10px 0 16px;max-width:14ch}
+.hero p{font-size:1.15rem;max-width:44ch;margin:0 0 28px;color:#eef}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:#1d1600;font-weight:700;text-decoration:none;border-radius:999px;padding:14px 26px;min-height:48px}
+section{padding:88px 0}
+.head{max-width:640px;margin-bottom:40px}
+.head h2{font-family:var(--f-d);font-size:clamp(2rem,4vw,2.9rem);line-height:1.1;margin:8px 0 12px}
+.head p{color:var(--muted);margin:0}
+.head .eyebrow{color:var(--green)}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.tabs button{font:inherit;font-weight:700;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:10px 18px;cursor:pointer;min-height:44px}
+.tabs button[aria-selected=true]{background:var(--green);border-color:var(--green);color:#fff}
+.panel{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden}
+.panel[hidden]{display:none}
+.panel img{width:100%;height:100%;min-height:380px;object-fit:cover}
+.panel .txt{padding:32px 32px 32px 4px}
+.panel h3{font-family:var(--f-d);font-size:1.9rem;margin:0 0 10px}
+.panel p{color:var(--muted);margin:0 0 16px}
+.panel ul{margin:0;padding-left:20px}
+@media (max-width:820px){.panel{grid-template-columns:1fr}.panel img{min-height:240px}.panel .txt{padding:4px 22px 26px}}
+.alt{background:var(--card);border-block:1px solid var(--line)}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+@media (max-width:820px){.cards{grid-template-columns:1fr}}
+.card{background:var(--bg);border:1px solid var(--line);border-radius:18px;padding:26px}
+.card b{display:block;font-family:var(--f-d);font-size:1.3rem;margin-bottom:6px}
+.card p{margin:0;color:var(--muted)}
+.ties{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media (max-width:820px){.ties{grid-template-columns:1fr}}
+.tie{border-radius:18px;padding:28px;color:#fff}
+.tie.uk{background:#1d3b6e}.tie.kr{background:#7a1f2b}
+.tie h3{font-family:var(--f-d);font-size:1.5rem;margin:0 0 8px}.tie p{margin:0;opacity:.92}
+.plan{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+@media (max-width:820px){.plan{grid-template-columns:1fr}}
+.plan form{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;display:grid;gap:14px}
+.plan label{display:grid;gap:6px;font-weight:600;font-size:.92rem}
+.plan select,.plan input{font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);min-height:44px}
+.result{background:var(--green);color:#fff;border-radius:18px;padding:26px;min-height:200px}
+.result h3{font-family:var(--f-d);margin:0 0 10px;font-size:1.4rem}
+.result ol{margin:0;padding-left:20px}
+footer{background:#0a1a14;color:#cfe0d6;padding:40px 0}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:center}
+.social{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:#000}
+.social img{width:20px;height:20px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header id="top">
+  <nav class="wrap nav" aria-label="Main">
+    <a class="brand" href="#">Jam<i>aica</i></a>
+    <ul class="links">
+      <li><a href="#explore" data-i18n="nav.explore">Explore</a></li>
+      <li><a href="#culture" data-i18n="nav.culture">Culture</a></li>
+      <li><a href="#ties" data-i18n="nav.ties">Partners</a></li>
+      <li><a href="#plan" data-i18n="nav.plan">Plan a trip</a></li>
+    </ul>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang="ko" aria-pressed="false">한국어</button>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <div class="hero" role="img" aria-label="Colourful fishing boats on a Jamaican beach under palm trees">
+    <div class="wrap">
+      <span class="eyebrow" data-i18n="hero.eyebrow">Out of many, one people</span>
+      <h1 data-i18n="hero.title">Feel the rhythm of Jamaica</h1>
+      <p data-i18n="hero.text">Turquoise sea, quiet rivers, lively markets and a culture the whole world knows. Start exploring the island your way.</p>
+      <a class="btn" href="#explore" data-i18n="hero.cta">Start exploring</a>
+    </div>
+  </div>
+
+  <section id="explore">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow" data-i18n="ex.eyebrow">Explore</span>
+        <h2 data-i18n="ex.title">Choose your Jamaica</h2>
+        <p data-i18n="ex.text">Pick a theme to see what the island has in store.</p>
+      </div>
+      <div class="tabs" role="tablist" aria-label="Themes">
+        <button role="tab" id="t-beach" aria-controls="p-beach" aria-selected="true" data-i18n="tab.beach">Beaches</button>
+        <button role="tab" id="t-sea" aria-controls="p-sea" aria-selected="false" tabindex="-1" data-i18n="tab.sea">Coast</button>
+        <button role="tab" id="t-river" aria-controls="p-river" aria-selected="false" tabindex="-1" data-i18n="tab.river">Rivers</button>
+        <button role="tab" id="t-food" aria-controls="p-food" aria-selected="false" tabindex="-1" data-i18n="tab.food">Food &amp; markets</button>
+        <button role="tab" id="t-arrive" aria-controls="p-arrive" aria-selected="false" tabindex="-1" data-i18n="tab.arrive">Arriving</button>
+      </div>
+      <div class="panel" role="tabpanel" id="p-beach" aria-labelledby="t-beach">
+        <img src="images/beach.jpg" alt="Painted wooden fishing boats pulled up on a sandy beach" loading="lazy">
+        <div class="txt"><h3 data-i18n="p.beach.h">White sand, warm sea</h3><p data-i18n="p.beach.t">Fishing villages, palm-lined bays and calm Caribbean water make Jamaica's coast perfect for slow days.</p>
+        <ul><li data-i18n="p.beach.1">Swim and snorkel in clear water</li><li data-i18n="p.beach.2">Buy fresh fish from local fishermen</li><li data-i18n="p.beach.3">Watch the sunset from the shore</li></ul></div>
+      </div>
+      <div class="panel" role="tabpanel" id="p-sea" aria-labelledby="t-sea" hidden>
+        <img src="images/sea-view.jpg" alt="Calm turquoise sea seen past a palm frond and a low white wall" loading="lazy">
+        <div class="txt"><h3 data-i18n="p.sea.h">Endless blue horizons</h3><p data-i18n="p.sea.t">The north coast offers wide views of the Caribbean Sea, seaside walks and boat trips.</p>
+        <ul><li data-i18n="p.sea.1">Take a catamaran or glass-bottom boat trip</li><li data-i18n="p.sea.2">Relax at a seaside café</li></ul></div>
+      </div>
+      <div class="panel" role="tabpanel" id="p-river" aria-labelledby="t-river" hidden>
+        <img src="images/river.jpg" alt="Boats moored along a quiet green river at sunset" loading="lazy">
+        <div class="txt"><h3 data-i18n="p.river.h">Quiet rivers and green hills</h3><p data-i18n="p.river.t">Away from the beach, rivers wind through lush countryside. Rafting and boat rides show a calmer side of the island.</p>
+        <ul><li data-i18n="p.river.1">Go river rafting</li><li data-i18n="p.river.2">Spot birds and tropical flowers</li></ul></div>
+      </div>
+      <div class="panel" role="tabpanel" id="p-food" aria-labelledby="t-food" hidden>
+        <img src="images/market.jpg" alt="Market stall piled with mangoes, bananas, plantains and papayas" loading="lazy">
+        <div class="txt"><h3 data-i18n="p.food.h">Taste the island</h3><p data-i18n="p.food.t">Local markets overflow with mangoes, plantains, bananas and papaya. Don't leave without trying jerk chicken and ackee and saltfish.</p>
+        <ul><li data-i18n="p.food.1">Visit a local fruit market</li><li data-i18n="p.food.2">Try jerk chicken and festival</li><li data-i18n="p.food.3">Drink fresh coconut water</li></ul></div>
+      </div>
+      <div class="panel" role="tabpanel" id="p-arrive" aria-labelledby="t-arrive" hidden>
+        <img src="images/night-arrival.jpg" alt="Airport forecourt at night with palm trees, taxis and a 24-hour bank machine" loading="lazy">
+        <div class="txt"><h3 data-i18n="p.arrive.h">Arriving made easy</h3><p data-i18n="p.arrive.t">International flights land in Montego Bay and Kingston. You'll find 24-hour cash machines, licensed taxis and car rental right outside.</p>
+        <ul><li data-i18n="p.arrive.1">Use licensed taxis (red PP number plates)</li><li data-i18n="p.arrive.2">The local currency is the Jamaican dollar (JMD)</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="culture" class="alt">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow" data-i18n="cu.eyebrow">Culture</span>
+        <h2 data-i18n="cu.title">More than a holiday</h2>
+      </div>
+      <div class="cards">
+        <div class="card"><b data-i18n="cu.1.h">Music</b><p data-i18n="cu.1.t">The birthplace of reggae, ska and dancehall. Music is part of everyday life.</p></div>
+        <div class="card"><b data-i18n="cu.2.h">Language</b><p data-i18n="cu.2.t">English is the official language, and you'll also hear Jamaican Patois everywhere.</p></div>
+        <div class="card"><b data-i18n="cu.3.h">People</b><p data-i18n="cu.3.t">The national motto, "Out of many, one people", celebrates the island's mix of cultures.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ties">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow" data-i18n="ti.eyebrow">Partners</span>
+        <h2 data-i18n="ti.title">Jamaica and the world</h2>
+        <p data-i18n="ti.text">This site is built for visitors from the United Kingdom and South Korea, in their own language.</p>
+      </div>
+      <div class="ties">
+        <div class="tie uk"><h3 data-i18n="ti.uk.h">United Kingdom</h3><p data-i18n="ti.uk.t">Long-standing Commonwealth ties and a large Jamaican community in Britain.</p></div>
+        <div class="tie kr"><h3 data-i18n="ti.kr.h">South Korea</h3><p data-i18n="ti.kr.t">Growing interest in Caribbean travel, music and food from Korean visitors.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="plan" class="alt">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow" data-i18n="pl.eyebrow">Plan a trip</span>
+        <h2 data-i18n="pl.title">Your personal itinerary</h2>
+        <p data-i18n="pl.text">Tell us what you love and we'll suggest a simple plan.</p>
+      </div>
+      <div class="plan">
+        <form id="planner">
+          <label><span data-i18n="pl.days">How many days?</span>
+            <select id="days"><option>3</option><option selected>5</option><option>7</option></select></label>
+          <label><span data-i18n="pl.like">What do you enjoy most?</span>
+            <select id="like">
+              <option value="beach" data-i18n="tab.beach">Beaches</option>
+              <option value="river" data-i18n="tab.river">Rivers</option>
+              <option value="food" data-i18n="tab.food">Food &amp; markets</option>
+            </select></label>
+        </form>
+        <div class="result" aria-live="polite"><h3 id="r-title"></h3><ol id="r-list"></ol></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span data-i18n="foot">Demo tourism website. Photos for illustration.</span>
+    <a class="social" href="https://x.com/" target="_blank" rel="noopener" aria-label="Follow on X"><img src="images/x-logo.svg" alt=""></a>
+  </div>
+</footer>
+
+<script>
+var T = {
+  ko: {
+    "nav.explore":"둘러보기","nav.culture":"문화","nav.ties":"파트너","nav.plan":"여행 계획",
+    "hero.eyebrow":"여럿이 모여 하나의 민족","hero.title":"자메이카의 리듬을 느껴보세요","hero.text":"청록빛 바다, 고요한 강, 활기찬 시장, 그리고 전 세계가 아는 문화. 나만의 방식으로 섬을 탐험해 보세요.","hero.cta":"탐험 시작하기",
+    "ex.eyebrow":"둘러보기","ex.title":"나만의 자메이카를 고르세요","ex.text":"테마를 선택해 섬의 매력을 확인하세요.",
+    "tab.beach":"해변","tab.sea":"해안","tab.river":"강","tab.food":"음식과 시장","tab.arrive":"도착 안내",
+    "p.beach.h":"하얀 모래, 따뜻한 바다","p.beach.t":"어촌 마을, 야자수가 늘어선 만, 잔잔한 카리브해가 여유로운 하루를 선사합니다.","p.beach.1":"맑은 바다에서 수영과 스노클링","p.beach.2":"현지 어부에게 신선한 생선 구매","p.beach.3":"해변에서 일몰 감상",
+    "p.sea.h":"끝없이 펼쳐진 푸른 수평선","p.sea.t":"북쪽 해안에서는 탁 트인 카리브해 전망과 해안 산책, 보트 투어를 즐길 수 있습니다.","p.sea.1":"카타마란 또는 유리 바닥 보트 투어","p.sea.2":"바닷가 카페에서 휴식",
+    "p.river.h":"고요한 강과 푸른 언덕","p.river.t":"해변을 벗어나면 강이 푸른 시골길을 따라 흐릅니다. 래프팅과 보트 타기로 섬의 조용한 매력을 느껴보세요.","p.river.1":"강 래프팅","p.river.2":"새와 열대 꽃 구경",
+    "p.food.h":"섬의 맛을 즐기세요","p.food.t":"시장에는 망고, 플랜틴, 바나나, 파파야가 가득합니다. 저크 치킨과 아키 앤 솔트피시도 꼭 맛보세요.","p.food.1":"현지 과일 시장 방문","p.food.2":"저크 치킨과 페스티벌 맛보기","p.food.3":"신선한 코코넛 워터 마시기",
+    "p.arrive.h":"편리한 도착","p.arrive.t":"국제선은 몬테고베이와 킹스턴에 도착합니다. 공항 바로 앞에 24시간 ATM, 공인 택시, 렌터카가 있습니다.","p.arrive.1":"공인 택시 이용 (빨간색 PP 번호판)","p.arrive.2":"현지 통화는 자메이카 달러(JMD)입니다",
+    "cu.eyebrow":"문화","cu.title":"휴가 그 이상","cu.1.h":"음악","cu.1.t":"레게, 스카, 댄스홀의 탄생지. 음악은 일상의 일부입니다.","cu.2.h":"언어","cu.2.t":"공용어는 영어이며, 어디서나 자메이카 파투아도 들을 수 있습니다.","cu.3.h":"사람들","cu.3.t":"국가 표어 \"여럿이 모여 하나의 민족\"은 섬의 다양한 문화를 기념합니다.",
+    "ti.eyebrow":"파트너","ti.title":"자메이카와 세계","ti.text":"이 사이트는 영국과 한국 방문객을 위해 각자의 언어로 만들어졌습니다.","ti.uk.h":"영국","ti.uk.t":"오랜 영연방 관계와 영국 내 큰 자메이카 공동체.","ti.kr.h":"대한민국","ti.kr.t":"카리브해 여행, 음악, 음식에 대한 한국 여행객의 관심 증가.",
+    "pl.eyebrow":"여행 계획","pl.title":"나만의 여행 일정","pl.text":"좋아하는 것을 알려주시면 간단한 일정을 추천해 드립니다.","pl.days":"며칠 동안 머무시나요?","pl.like":"가장 좋아하는 것은?",
+    "foot":"데모 관광 웹사이트입니다. 사진은 예시용입니다."
+  }
+};
+var PLAN = {
+  en: { title: function(d){return d+"-day Jamaica plan"},
+    base:["Arrive in Montego Bay and settle in","Relax on the beach and watch the sunset"],
+    beach:["Snorkelling and a boat trip","Visit a fishing village","Beach day on the north coast"],
+    river:["River rafting through the countryside","Nature walk to spot birds and flowers","Boat ride at sunset"],
+    food:["Morning visit to a fruit market","Jerk chicken tasting","Cooking ackee and saltfish"],
+    end:"Last morning: souvenirs and departure" },
+  ko: { title: function(d){return d+"일 자메이카 일정"},
+    base:["몬테고베이 도착 및 숙소 체크인","해변에서 휴식하며 일몰 감상"],
+    beach:["스노클링과 보트 투어","어촌 마을 방문","북쪽 해안에서 해변의 하루"],
+    river:["시골길을 따라 강 래프팅","새와 꽃을 보는 자연 산책","일몰 보트 타기"],
+    food:["아침 과일 시장 방문","저크 치킨 맛보기","아키 앤 솔트피시 요리 체험"],
+    end:"마지막 날 아침: 기념품 쇼핑 후 출발" }
+};
+var EN = {}, lang = "en";
+document.querySelectorAll("[data-i18n]").forEach(function(el){ EN[el.dataset.i18n] = el.textContent; });
+function setLang(l){
+  lang = l; document.documentElement.lang = l;
+  document.querySelectorAll("[data-i18n]").forEach(function(el){
+    var k = el.dataset.i18n; el.textContent = (l === "en" ? EN[k] : (T[l][k] || EN[k]));
+  });
+  document.querySelectorAll(".lang button").forEach(function(b){ b.setAttribute("aria-pressed", b.dataset.lang === l); });
+  try { localStorage.setItem("lang", l); } catch (e) {}
+  plan();
+}
+document.querySelectorAll(".lang button").forEach(function(b){ b.addEventListener("click", function(){ setLang(b.dataset.lang); }); });
+
+// tabs (arrow keys supported)
+var tabs = [].slice.call(document.querySelectorAll('[role=tab]'));
+function select(t){
+  tabs.forEach(function(x){ var on = x === t; x.setAttribute("aria-selected", on); x.tabIndex = on ? 0 : -1;
+    document.getElementById(x.getAttribute("aria-controls")).hidden = !on; });
+  t.focus();
+}
+tabs.forEach(function(t, i){
+  t.addEventListener("click", function(){ select(t); });
+  t.addEventListener("keydown", function(e){
+    if (e.key === "ArrowRight") select(tabs[(i + 1) % tabs.length]);
+    if (e.key === "ArrowLeft") select(tabs[(i - 1 + tabs.length) % tabs.length]);
+  });
+});
+
+// itinerary planner
+function plan(){
+  var d = +document.getElementById("days").value, like = document.getElementById("like").value, P = PLAN[lang];
+  var items = P.base.slice(), pool = P[like].concat(P.beach, P.food, P.river), i = 0;
+  while (items.length < d - 1) { var x = pool[i++ % pool.length]; if (items.indexOf(x) < 0 || i > pool.length) items.push(x); }
+  items.push(P.end);
+  document.getElementById("r-title").textContent = P.title(d);
+  document.getElementById("r-list").innerHTML = items.map(function(t, n){
+    return "<li>" + (lang === "ko" ? (n + 1) + "일차: " : "Day " + (n + 1) + ": ") + t + "</li>"; }).join("");
+}
+document.getElementById("planner").addEventListener("change", plan);
+
+// header turns solid after scrolling past the hero
+window.addEventListener("scroll", function(){ document.getElementById("top").classList.toggle("solid", window.scrollY > 60); }, { passive: true });
+
+var saved = "en"; try { saved = localStorage.getItem("lang") || "en"; } catch (e) {}
+setLang(saved === "ko" ? "ko" : "en");
+</script>
+</body>
+</html>
